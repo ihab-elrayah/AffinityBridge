@@ -1,0 +1,65 @@
+AffinityBridge summarize of the file structure and their functions:
+
+app.js: 
+    This is the main entry point of the application. It sets up the Express server, includes middleware, and defines routes for user and post-related endpoints. It also handles server error responses and starts the server.
+        Middleware:
+            bodyParser.json({ limit: maxPayloadSize }): Middleware to parse JSON data with an increased payload size limit.
+            cors(): Cross-Origin Resource Sharing middleware for handling cross-origin requests.
+        Routes:
+            /user: User-related routes are handled by the userRoutes module.
+            /post: Post-related routes are handled by the postRoutes module, and the abjwtoken middleware is applied to ensure authorization.
+        Error Handling:
+            Custom error handler middleware to catch PayloadTooLargeError and other errors, and return appropriate responses.
+        Root URL:
+            Default route handler for the root URL returns a welcome message.
+
+controllers/userController.js: 
+    This file contains functions for user registration, login, and logout.
+        registerUser(req, res): Handles user registration by hashing the password and saving user details in the database.
+        loginUser(req, res): Handles user login by verifying credentials and generating a JWT token.
+        logoutUser(req, res): Handles user logout by invalidating the JWT token and adding it to a blacklist.
+
+controllers/postController.js: 
+    This file contains functions related to post management.
+        getAllPosts(req, res): Fetches all posts from the database and calculates the time difference for each post.
+        createPost(req, res): Handles post creation, validates the input, and associates the post with the logged-in user.
+
+db/db.js: 
+    This file establishes a connection to the PostgreSQL database using Sequelize.
+
+middlewares/authMiddleware.js: 
+    This middleware verifies the JWT token from the request header and decodes its payload to check for authorization.
+
+models/:
+    blacklist.js: 
+        Defines the Blacklist model with columns for id, blacklistedToken, createdAt, and updatedAt.
+    photos.js: 
+        Defines the Photo model with columns for id, post_id, and photo_url.
+    post.js: 
+        Defines the Post model with columns for id and content and includes a one-to-many association with the Photo model.
+    user.js: 
+        Defines the User model with columns for name, email, and password.
+
+routes/:
+    postRoutes.js: 
+        Defines routes for creating posts and fetching all posts.
+    userRoutes.js: 
+        Defines routes for user registration, login, and logout.
+
+aws-config.env: 
+    Environment file containing AWS S3 credentials.
+
+aws-config.js: 
+    JavaScript file exporting AWS S3 credentials.
+
+aws-credentials.js: 
+    JavaScript file exporting AWS credentials.
+
+errorHandler.js: 
+    Custom error handler middleware to log errors and return appropriate error responses.
+
+index.js: 
+    Client-side JavaScript code for handling form submissions and interactions.
+
+index.html: 
+    Client-side HTML file containing user registration, login, post creation, and logout forms for the AffinityBridge Express.js application.

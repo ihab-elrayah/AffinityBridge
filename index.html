@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AffinityBridge</title>
+  <style>
+    /* CSS styles for the page */
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 1rem;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    textarea {
+      width: 100%;
+      padding: 0.5rem;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      background-color: #333;
+      color: #fff;
+      border: none;
+      padding: 0.75rem 1rem;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #555;
+    }
+    .error {
+      color: red;
+      margin-top: 0.5rem;
+    }
+    .success {
+      color: green;
+      margin-top: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>AffinityBridge</h1>
+  </header>
+
+  <!-- User Registration Form -->
+  <div class="container">
+    <h2>User Registration</h2>
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" id="name" required>
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" required>
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" required>
+    </div>
+    <div class="form-group">
+      <button id="registerBtn">Register</button>
+    </div>
+    <div id="registrationMessage" class="success"></div>
+  </div>
+
+  <!-- User Login Form -->
+  <div class="container">
+    <h2>User Login</h2>
+    <div class="form-group">
+      <label for="loginEmail">Email:</label>
+      <input type="email" id="loginEmail" required>
+    </div>
+    <div class="form-group">
+      <label for="loginPassword">Password:</label>
+      <input type="password" id="loginPassword" required>
+    </div>
+    <div class="form-group">
+      <button id="loginBtn">Login</button>
+    </div>
+    <div id="loginMessage" class="success"></div>
+  </div>
+
+  <!-- Create Post Form (Logged In Users) -->
+<div class="container">
+  <h2>Create Post (Logged In Users)</h2>
+  <div class="form-group">
+    <label for="postTitle">Title:</label>
+    <input type="text" id="postTitle" required>
+  </div>
+  <div class="form-group">
+    <label for="postDescription">Description:</label>
+    <textarea id="postDescription" rows="4" required></textarea>
+  </div>
+  <div class="form-group">
+    <!-- Use the "accept" attribute to specify the file types allowed for upload -->
+    <label for="postPhoto">Photo:</label>
+    <input type="file" id="postPhoto" multiple required accept=".jpg, .jpeg, .png, .pdf">
+  </div>
+  <div class="form-group">
+    <button id="createPostBtn">Create Post</button>
+    <p id="postCreationMessage"></p>
+  </div>
+  <div id="postCreationMessage" class="success"></div> <!-- New div to display post creation message -->
+</div>
+
+
+  <!-- User Logout Button -->
+  <div class="container">
+    <h2>User Logout</h2>
+    <div class="form-group">
+      <button id="logoutBtn">Logout</button>
+    </div>
+    <div id="logoutMessage" class="success"></div>
+  </div>
+
+  <!-- Include the index.js file for handling form submissions and interactions -->
+  <script src="index.js"></script>
+</body>
+</html>
